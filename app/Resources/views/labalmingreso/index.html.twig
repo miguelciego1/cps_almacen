@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>LISTADO <small>Registro de Ingresos</small></h2>
+                    <!-- ----------------------------------------------- -->
+
+                    <div class="title_right">
+                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                         <a  class="btn btn-success" href="{{ path('labalmingreso_new') }}" >
+                          <i class="glyphicon glyphicon-plus-sign"> NUEVO INGRESO DE PRODUCTOS</i>
+                        </a>
+                         </div>
+                       </div>
+                      <!-- ------------------------------------ -->
+
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+                    <div class="table-responsive">
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr class="headings">
+                <th class="column-title">NRO</th>
+                <th class="column-title">FECHA RECIBIDO</th>
+                <th class="column-title">NRO EGRESO ALMACEN</th>
+                <th class="column-title">ESTADO</th>
+                <th class="column-title">OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for labAlmIngreso in labAlmIngresos %}
+            <tr>
+                <td><a href="{{ path('labalmingreso_show', { 'id': labAlmIngreso.id }) }}">{{ labAlmIngreso.id }}</a></td>
+                <td>{% if labAlmIngreso.fechaRecibido %}{{ labAlmIngreso.fechaRecibido|date('d-m-Y') }}{% endif%}</td>
+                <td>{{ labAlmIngreso.numeroEgresoAlmacen }}</td>
+                <td>{% if labAlmIngreso.estado ==1%} <span>En Proceso</span>{% elseif labAlmIngreso.estado == 2 %}<span>Confirmado</span>{% endif %}</td>
+                
+                <td>
+                            <a href="{{ path('labalmingreso_show', { 'id': labAlmIngreso.id }) }}" class="btn btn-info">MOSTRAR</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

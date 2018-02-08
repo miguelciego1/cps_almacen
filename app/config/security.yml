@@ -1,0 +1,53 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+
+    encoders:
+        Alm\ControlStockBundle\Entity\LabAlmUsuario:
+            algorithm:           md5
+            encode_as_base64:    false
+            iterations:          1
+
+    providers:
+        usuAlmAdm:
+            entity:
+                class: AlmControlStockBundle:LabAlmUsuario
+                property: login
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        EmpAdm:
+             pattern: ^/
+             anonymous: ~
+             provider: usuAlmAdm
+             form_login:
+                 login_path: /seguridad/login
+                 check_path: /seguridad/login_check
+                 default_target_path: /admin
+                 always_use_default_target_path: true
+              # access_denied_url: /emp/adm/seguridad/login
+             logout:
+                 path: /seguridad/logout
+                 target: /seguridad/login
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+
+    access_control:
+        - { path: ^/seguridad/login$,       roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/labalmingreso/,         roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/labalmproductolab/,     roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/labalmdetalleingreso/,     roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/labalmdetalleegreso/,     roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/labalmegreso/,         roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/admin/*,         roles: IS_AUTHENTICATED_FULLY }
+

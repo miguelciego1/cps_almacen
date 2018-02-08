@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <style>
+/*table, th, td {*/
+/*    border: 1px solid black;*/
+/*    border-collapse: collapse;*/
+/*    text-align:left;*/
+/*}*/
+</style>
+    </head>
+    <body>
+
+    <table width="100%"  border="1" cellspacing="0" cellpadding="0" style="table-layout:fixed font-size:10px";>
+        <thead>
+            <tr>
+                <th colspan="4"><h3>Productos Ingresados</h3></th>
+                </tr>
+            <tr>
+                <td><FONT SIZE=2>Fecha de Emision : {{ "now"|date("m/d/Y") }}</FONT></td>
+                <td><FONT SIZE=2>Usuario : {{ app.user.username }}</FONT></td>
+            </tr>
+            <tr>
+                <td colspan="2"><FONT SIZE=2>Cantidad Items : {{detalleIngresos|length}} </FONT></td>
+            </tr>
+        </thead>
+    </table>
+    <br>
+    <table width="100%"  border="1" cellspacing="0" cellpadding="0" style="table-layout:fixed font-size:10px";>
+        <thead>
+            <tr>
+                <th width="15%"><FONT SIZE=2>COD. PROD.</FONT></th>
+                <th width="30%"><FONT SIZE=2>PRODUCTO</FONT></th>
+                <th width="10%"><FONT SIZE=2>CANTIDAD</FONT></th>
+                <th width="10%"><FONT SIZE=2>TIPO</FONT></th>
+                <th width="15%"><FONT SIZE=2>FECHA</FONT></th>
+        </thead>
+        <tbody>
+            {% for detalleIngreso in detalleIngresos%}
+                <tr style="page-break-inside: avoid";>
+                    <td align="center"><FONT SIZE=2>{{detalleIngreso.productolab.producto.codpro}}</FONT></td>
+                    <td ><FONT SIZE=2>{{detalleIngreso.productolab.producto.nombre}}</FONT></td>
+                    <td align="center"><FONT SIZE=2>{{detalleIngreso.cantidad}}</FONT></td>
+                    <td align="center"><FONT SIZE=2>{{detalleIngreso.productolab.tipo}}</FONT></td>
+                    <td align="center"><FONT SIZE=2>{{detalleIngreso.ingreso.creadoEl|date('d-m-Y')}}</FONT></td>
+                    
+                </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    </body>
+
+</html>

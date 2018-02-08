@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>Registro de Datos Generales de Ingreso</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-success" type="submit" value="GUARDAR" />
+    {{ form_end(form) }}
+
+            <a class="btn btn-default" href="{{ path('labalmingreso_index') }}">Ir al Listado</a>
+       
+{% endblock %}

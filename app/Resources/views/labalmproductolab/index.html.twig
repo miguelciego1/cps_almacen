@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Listado
+                        <small>Registro de Permiso</small>
+                    </h2>
+                    <!-- ----------------------------------------------- -->
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <a class="btn btn-success" href="{{ path('labalmproductolab_new') }}">
+                                <i class="glyphicon glyphicon-plus-sign">
+                                    NUEVO PRODUCTO</i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- ------------------------------------ -->
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="x_content">
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                                <tr class="headings">
+                                <th class="column-title">CODIGO</th>
+                                <th class="column-title">DESCRIPCION</th>
+                                <th class="column-title">PRESENTACION</th>
+                                <th class="column-title">TIPO</th>
+                                <th class="column-title">SALDO</th>
+                                <th class="column-title">ESTADO</th>
+                                <th class="column-title">OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for labAlmProductolab in labAlmProductolabs %}
+            <tr>
+                <td>{{ labAlmProductolab.producto.codPro }}</td>
+                <td>{{ labAlmProductolab.producto.nombre}}</td>
+                <td>{{ labAlmProductolab.presentacion }}</td>
+                <td>{{ labAlmProductolab.tipo }}</td>
+                <td>{{ labAlmProductolab.stock }}</td>
+                <td>
+                {% if labAlmProductolab.estado==0 %}
+                <span class="label label-danger"> Agotado</span>
+                {% elseif labAlmProductolab.estado==1 %}
+                <span class="label label-warning">Por agotar</span>
+                {% else %}
+                <span class="label label-success">Disponible</span>
+                {% endif %}</td>
+                <td><a href="{{path('labalmproductolab_show',{'id':labAlmProductolab.id})}}" class="btn btn-info">MOSTRAR</a></td>
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

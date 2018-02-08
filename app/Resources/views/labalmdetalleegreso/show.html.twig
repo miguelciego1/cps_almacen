@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>Labalmdetalleegreso</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ labAlmDetalleegreso.cantidad }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ labAlmDetalleegreso.estado }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ labAlmDetalleegreso.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('labalmdetalleegreso_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('labalmdetalleegreso_edit', { 'id': labAlmDetalleegreso.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

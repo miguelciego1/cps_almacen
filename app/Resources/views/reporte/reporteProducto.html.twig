@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+
+    <table width="100%"  cellspacing="0" cellpadding="0" style="table-layout:fixed font-size:10px";>
+        <thead>
+            <tr>
+                <th colspan="4"><h3>REPORTE DE INSUMOS DE LABORATORIO</h3></th>
+            </tr>
+            <tr>
+                <td colspan="2"><FONT SIZE=2>Fecha de Emision : {{ "now"|date("m/d/Y") }}</FONT></td>
+                <td colspan="2"><FONT SIZE=2>Usuario : {{ app.user.username }}</FONT></td>
+            </tr>
+            <tr>
+                <td colspan="4"><FONT SIZE=2>Cantidad Items : {{productos|length}} </FONT></td>
+            </tr>
+        </thead>
+    </table>
+    <br>
+    <table width="100%"  cellspacing="0" cellpadding="0" style="table-layout:fixed font-size:10px";>
+        <thead border="1" >
+            <tr>
+                <th width="13%"><FONT SIZE=2>COD. PROD.</FONT></th>
+                <th width="40%"><FONT SIZE=2>PRODUCTO</FONT></th>
+                <th width="7%"><FONT SIZE=2>SALDO</FONT></th>
+                <th width="5%"><FONT SIZE=2>TIPO</FONT></th>
+                <th width="15%"><FONT SIZE=2>ESTADO</FONT></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for productolab in productos%}
+                <tr style="page-break-inside: avoid";>
+                    <td align="center"><FONT SIZE=2>{{productolab.producto.codpro}}</FONT></td>
+                    <td ><FONT SIZE=2>{{productolab.producto.nombre}}</FONT></td>
+                    <td align="center"><FONT SIZE=2>{{productolab.stock}}</FONT></td>
+                    <td align="center"><FONT SIZE=2>{{productolab.tipo}}</FONT></td>
+                    <td align="center"><FONT SIZE=2>{% if productolab.estado ==1%}<span>POR AGOTARSE</span>{% elseif productolab.estado==2%}<span>DISPONIBLE</span>{% elseif productolab.estado==0%}<span>AGOTADO</span>{% endif %}</FONT></td>
+                    
+                </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    </body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+
+    <table width="100%"  border="1" cellspacing="0" cellpadding="0" style="table-layout:fixed font-size:10px";>
+        <thead>
+            <tr>
+                <th colspan="4"><h3>Productos Egresados</h3></th>
+            </tr>
+            <tr>
+                <td colspan="2"><FONT SIZE=2>Fecha de Emision : {{ "now"|date("m/d/Y") }}</FONT></td>
+                <td colspan="2"><FONT SIZE=2>Usuario : {{ app.user.username }}</FONT></td>
+            </tr>
+            <tr>
+                <td ><FONT SIZE=2>Cantidad Items : {{detalleEgresos|length}} </FONT></td>
+                <td><FONT SIZE=2>Desde : {{fIni}}</FONT></td>
+                <td><FONT SIZE=2>Hasta : {{fFin}}</FONT></td>
+            </tr>
+        </thead>
+    </table>
+    <br>
+    <table width="100%"  border="1" cellspacing="0" cellpadding="0" style="table-layout:fixed font-size:10px";>
+        <thead>
+            <tr>
+                <th width="13%"><FONT SIZE=2>COD. PROD.</FONT></th>
+                <th width="40%"><FONT SIZE=2>PRODUCTO</FONT></th>
+                <th width="7%"><FONT SIZE=2>CANTIDAD</FONT></th>
+                <th width="5%"><FONT SIZE=2>TIPO</FONT></th>
+                <th width="15%"><FONT SIZE=2>FECHA</FONT></th>
+                <th width="15%"><FONT SIZE=2>SECCION</FONT></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for detalleEgreso in detalleEgresos%}
+                <tr style="page-break-inside: avoid";>
+                    <td align="center"><FONT SIZE=2>{{detalleEgreso.productolab.producto.codpro}}</FONT></td>
+                    <td ><FONT SIZE=2>{{detalleEgreso.productolab.producto.nombre}}</FONT></td>
+                    <td align="center"><FONT SIZE=2>{{detalleEgreso.cantidad}}</FONT></td>
+                    <td align="center"><FONT SIZE=2>{{detalleEgreso.productolab.tipo}}</FONT></td>
+                    <td align="center"><FONT SIZE=2>{{detalleEgreso.egreso.creadoEl|date('d-m-Y')}}</FONT></td>
+                    <td ><FONT SIZE=2>{{detalleEgreso.egreso.seccion|upper}}</FONT></td>
+                    
+                </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    </body>
+
+</html>

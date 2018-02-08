@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2><i class="fa fa-align-left"></i> REPORTES</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <!-- start accordion -->
+                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="panel">
+                        <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                          <h4 class="panel-title">Generar Reporte Ingresos/Egresos PDF</h4>
+                        </a>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                            {{ form_start(form) }}
+                            {{form_widget(form)}}
+                            {{form_end(form)}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel">
+                        <a class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          <h4 class="panel-title">Generar Reporte Insumos PDF</h4>
+                        </a>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                            {{ form_start(formP) }}
+                            {{form_widget(formP)}}
+                            {{form_end(formP)}}
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <!-- end of accordion -->
+                  </div>
+                </div>
+              </div>
+{% endblock %}
+{% block javascripts %}
+{{ form_javascript(form) }}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>REGISTRO DE PRODUCTO</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input class="btn btn-success" type="submit" value="Guardar" />
+    {{ form_end(form) }}
+            <a class="btn btn-default" href="{{ path('labalmproductolab_index') }}">Ir al listado</a>
+       
+{% endblock %}
+{% block javascripts %}
+                {{ form_javascript(form) }}
+{% endblock javascripts %}

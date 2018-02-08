@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block page_content %}
+    <h1>Registrar Producto al Egreso</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <a href="{{ path('labalmegreso_edit', { 'id': labAlmEgreso.id }) }}"  class="btn btn-default"><b><i class="fa fa-caret-left" aria-hidden="true"></i> Atras</b>  </a>
+        <input class="btn btn-success" type="submit" value="Agregar al listado" />
+        <a href="{{ path('labalmegreso_show', { 'id': labAlmEgreso.id }) }}"  class="btn btn-default"><b>Siguiente <i class="fa fa-caret-right" aria-hidden="true"></i></b>  </a>
+    {{ form_end(form) }}
+    {% include 'labalmdetalleegreso/index.html.twig' with {'labAlmDetalleegresos':labAlmDetalles}%}
+{% endblock %}
+{% block javascripts %}
+                {{ form_javascript(form) }}
+{% endblock javascripts %}

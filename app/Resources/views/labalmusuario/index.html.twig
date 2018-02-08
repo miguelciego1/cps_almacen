@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Labalmusuarios list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Login</th>
+                <th>Estado</th>
+                <th>Password</th>
+                <th>Seccion</th>
+                <th>Creadoel</th>
+                <th>Modificadoel</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for labAlmUsuario in labAlmUsuarios %}
+            <tr>
+                <td><a href="{{ path('labalmusuario_show', { 'id': labAlmUsuario.id }) }}">{{ labAlmUsuario.login }}</a></td>
+                <td>{{ labAlmUsuario.estado }}</td>
+                <td>{{ labAlmUsuario.password }}</td>
+                <td>{{ labAlmUsuario.seccion }}</td>
+                <td>{% if labAlmUsuario.creadoEl %}{{ labAlmUsuario.creadoEl|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if labAlmUsuario.modificadoEl %}{{ labAlmUsuario.modificadoEl|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ labAlmUsuario.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('labalmusuario_show', { 'id': labAlmUsuario.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('labalmusuario_edit', { 'id': labAlmUsuario.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('labalmusuario_new') }}">Create a new labAlmUsuario</a>
+        </li>
+    </ul>
+{% endblock %}

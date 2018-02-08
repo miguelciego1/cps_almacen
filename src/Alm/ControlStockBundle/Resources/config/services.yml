@@ -1,0 +1,61 @@
+services:
+#    alm_control_stock.example:
+#        class: Alm\ControlStockBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    alm_control_stock.form.Egreso:
+        class: Alm\ControlStockBundle\Form\EgresoType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form}
+####################################################################################################################################
+################################## ADMIN'S QUE SE MUESTRAN EN EL DASHBOARD #########################################################
+####################################################################################################################################
+    admin.productolab:
+        class: Alm\ControlStockBundle\Admin\LabAlmProductolabAdmin
+        arguments: [~, Alm\ControlStockBundle\Entity\AlmacenProductoLaboratorio, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Almacenes", label: Almacen Laboratorio }
+            
+    admin.control:
+        class: Alm\ControlStockBundle\Admin\LabAlmControlAdmin
+        arguments: [~, Alm\ControlStockBundle\Entity\ControlReactivo, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm,group: "Control de Reactivos", label: Control General}
+
+    admin.ingreso:
+        class: Alm\ControlStockBundle\Admin\MovimientoAdmin
+        arguments: [~, Alm\ControlStockBundle\Entity\Movimiento, AlmControlStockBundle:LabAlmIngresoP]
+        tags:
+            - { name: sonata.admin, manager_type: orm,group: "Movimientos", label: Ingreso/Egreso}
+    
+    admin.detallecontroli:
+        class: Alm\ControlStockBundle\Admin\LabAlmDetallecontroliAdmin
+        arguments: [~, Alm\ControlStockBundle\Entity\DetalleControl, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm,group: "Control de Reactivos", label: Kardex Ingreso/Egreso}   
+    
+####################################################################################################################################
+################################## ADMIN'S QUE NO SE MUESTRAR PERO FUNCIONAN DE APOYO A OTROS ADMIN'S ################################
+####################################################################################################################################
+    admin.producto:
+        class: Alm\ControlStockBundle\Admin\AlmAdmProductoAdmin
+        arguments: [~, Alm\ControlStockBundle\Entity\AlmacenProducto, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false}
+
+    admin.detalleingreso:
+        class: Alm\ControlStockBundle\Admin\LabAlmDetalleingresoAdmin
+        arguments: [~, Alm\ControlStockBundle\Entity\DetalleMovimiento, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false}
+
+       
+
+####################################################################################################################################
+################################## SERVICIOS PARA EVENTOS PRE(PERSIST,PREUPDATE,PREREMOVE) #########################################
+####################################################################################################################################       
+   
+    prepersist.listener:
+        class: Alm\ControlStockBundle\EventListener\PrePersistListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
